@@ -55,12 +55,5 @@ function _fetchPokemonByUrl(url) {
     return fetch(url);
 }
 
-function _createVoteUrl() {
-    return `${crewBaseUrl}/challenge/create.php?key=${apiKey}`;
-}
-
-function _createGetVoteUrl() {
-    return `${crewBaseUrl}/challenge/readAll.php?key=${apiKey}`;
-}
 
 //FINAL

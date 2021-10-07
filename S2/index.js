@@ -1,4 +1,5 @@
 import * as Service from "./model/Service.js";
+import Team from "./model/Team.js";
 
 let currentPokemons = [];
 let currentUser = JSON.parse(window.localStorage.getItem("user"));
@@ -28,17 +29,28 @@ function getRandomPokemons() {
         });
     });
 }
+let Team1 = new Team();
 
 function onVoteClick(event) {
     let pokemon = _.find(currentPokemons, o => {
         return o.pokemonData.id == event.srcElement.id.substring(1);
     });
 
-    Service.sendVote(pokemon, currentUser).then(pokemonName => {
-        document.getElementById("voteResult").style.display = "block";
-        document.getElementById("voteResultText").innerHTML = `You voted for ${pokemonName.toUpperCase()}!`;
-        getRandomPokemons();
-    });
+
+    addPokemon(pokemon);
 }
+
+function addPokemon(pokemon) {
+    if (Team1.roster.length < 6) {
+        Team1.roster.push(pokemon.pokemonData.name)
+        console.log('Added to team');
+        console.log(Team1);
+
+    } else {
+        console.log('Team is full');
+    }
+
+};
+
 
 //FINAL
